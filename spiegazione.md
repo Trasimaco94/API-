@@ -321,15 +321,15 @@ La sincronicità in JavaScript si riferisce alla gestione del flusso di esecuzio
               }, 1000);
           });
 
-      }
+          }
 
-    async function main() {
-    console.log("Inizio operazione asincrona.");
-    await eseguiOperazioneAsync();
-    console.log("Fine operazione asincrona.");
-    }
+          async function main() {
+          console.log("Inizio operazione asincrona.");
+          await eseguiOperazioneAsync();
+          console.log("Fine operazione asincrona.");
+          }
 
-    main();
+          main();
 
 Le differenze principali tra callback e promises sono:
 
@@ -352,23 +352,22 @@ Le funzioni di callback sono ampiamente utilizzate nei linguaggi di programmazio
 
 Ecco un esempio più generale di come può apparire una funzione di callback in JavaScript:
 
-function eseguiOperazioneAsync(operazione, callback) {
-// Simulazione di un'operazione asincrona, ad esempio una richiesta AJAX
-setTimeout(function() {
-let risultato = operazione(3, 4); // Esegui l'operazione (in questo caso, somma)
-callback(risultato); // Chiamare la funzione di callback con il risultato
-}, 1000); // Simulare un ritardo di 1 secondo
-}
+    function eseguiOperazioneAsync(operazione, callback) {
+    // Simulazione di un'operazione asincrona, ad esempio una richiesta AJAX
+    setTimeout(function() {
+    let risultato = operazione(3, 4); // Esegui l'operazione (in questo caso, somma)
+    callback(risultato); // Chiamare la funzione di callback con il risultato
+    }, 1000); // Simulare un ritardo di 1 secondo
+    }
 
-// Funzione di callback
-function gestisciRisultato(risultato) {
-console.log("Il risultato è: " + risultato);
-}
+    // Funzione di callback
+    function gestisciRisultato(risultato) {
+    console.log("Il risultato è: " + risultato);
+    }
 
-// Chiamare la funzione con una funzione di callback
-eseguiOperazioneAsync(function(a, b) {
-return a + b;
-}, gestisciRisultato);
+    // Chiamare la funzione con una funzione di callback
+    eseguiOperazioneAsync(function(a, b) {
+    return a + b; }, gestisciRisultato); ```
 
 In questo esempio:
 
@@ -384,22 +383,22 @@ Il termine "callback hell" o "pyramid of doom" si riferisce a una situazione in 
 
 Ecco un esempio di "callback hell" con l'utilizzo di molte chiamate fetch annidate:
 
-fetch(url1)
-.then(response1 => response1.json())
-.then(data1 => {
-fetch(url2)
-.then(response2 => response2.json())
-.then(data2 => {
-fetch(url3)
-.then(response3 => response3.json())
-.then(data3 => {
-// ... e così via
-})
-.catch(error3 => console.error('Errore durante il recupero dei dati 3:', error3));
-})
-.catch(error2 => console.error('Errore durante il recupero dei dati 2:', error2));
-})
-.catch(error1 => console.error('Errore durante il recupero dei dati 1:', error1));
+    fetch(url1)
+    .then(response1 => response1.json())
+    .then(data1 => {
+    fetch(url2)
+    .then(response2 => response2.json())
+    .then(data2 => {
+    fetch(url3)
+    .then(response3 => response3.json())
+    .then(data3 => {
+    // ... e così via
+    })
+    .catch(error3 => console.error('Errore durante il recupero dei dati 3:', error3));
+    })
+    .catch(error2 => console.error('Errore durante il recupero dei dati 2:', error2));
+    })
+    .catch(error1 => console.error('Errore durante il recupero dei dati 1:', error1));
 
 Questo tipo di struttura può diventare rapidamente difficile da leggere e gestire, portando a problemi come:
 
